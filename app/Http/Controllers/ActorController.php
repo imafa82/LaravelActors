@@ -53,12 +53,13 @@ class ActorController extends Controller
      * @param  \App\Actor  $actor
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Actor $actor)
     {
         // Ci consente di vedere i dati di un singolo attore
-
-        //$actor = Actor::find($id, ['id','name', 'surname'])->load('movies');
-        return response()->json($actor);
+        //dd($actor);
+        //$actor = Actor::with('movies:id,title,actor_id')->select('id', 'name', 'surname')->get()->find($id);
+        //return response()->json($actor);
+        return view('actors.show', compact('actor'));
     }
 
     /**
