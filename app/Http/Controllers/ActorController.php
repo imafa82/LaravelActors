@@ -112,5 +112,8 @@ class ActorController extends Controller
     public function destroy(Actor $actor)
     {
         // Eliminare i dati del singolo attore
+        $actor->movies()->delete();
+        $actor->delete();
+        return redirect()->route('actors.index');
     }
 }

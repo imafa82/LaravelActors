@@ -14,7 +14,26 @@
                         </div>
                     @endif
 
-                    You are logged in!
+                    <div class="row">
+                       @component('components.design.icon', [
+                           'ico' => 'id-card-o',
+                           'url' => url('/actors'),
+                           'label' => 'Attori'
+                       ])
+                       @endcomponent
+                       @component('components.design.icon', [
+                           'ico' => 'user',
+                           'url' => url('/users'),
+                           'label' => 'Utenti'
+                       ])
+                       @endcomponent
+                       @component('components.design.icon', [
+                           'ico' => 'key',
+                           'url' => url('/permissions'),
+                           'label' => 'Permessi'
+                       ])
+                       @endcomponent
+                    </div>
                 </div>
             </div>
         </div>

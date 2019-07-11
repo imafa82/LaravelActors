@@ -6,3 +6,38 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+@import "~font-awesome/scss/font-awesome.scss";
+
+.actor{
+    i{
+      color:white;
+      cursor: pointer;
+    }
+}
+div.iconHome{
+    height: 200px;
+    a{
+        width: 100%;
+        height: 100%;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: black;
+        &:hover{
+            background-color: gray;
+            color: white;
+            text-decoration: none;
+        }
+        i{
+            flex-basis: 40%;
+            font-size: 5em;
+            text-align: center;
+        }
+        span{
+            flex-basis: 60%;
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+}
