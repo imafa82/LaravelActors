@@ -34,6 +34,7 @@ class ActorController extends Controller
     public function create()
     {
         // Ci restituisce il form di creazione dell'attore
+        return view('actors.create');
     }
 
     /**
@@ -45,6 +46,20 @@ class ActorController extends Controller
     public function store(Request $request)
     {
         // Ci consente di crea l'attore
+        //$actor = Actor::create($request->all());
+        //return response()->json($actor)
+        $this->validate($request, [
+            'name' => 'required|alpha',
+            'surname' => 'required',
+            'year' => 'required'
+        ], [
+            'name.required' => 'Il campo nome è obbligatorio',
+            'name.alpha' => 'Il campo nome non può essere numerico',
+            'surname.required' => 'Il cognome non può essere lasciato vuoto',
+            'year.required' => "Vuoi nascondere l'anno di nascita? Non puoi"
+        ]);
+        Actor::create($request->all());
+        return redirect()->route('actors.index');
     }
 
     /**
@@ -71,6 +86,7 @@ class ActorController extends Controller
     public function edit(Actor $actor)
     {
         // Ci restituisce il form per aggiornare l'attore
+        return view('actors.edit', compact('actor'));
     }
 
     /**
@@ -83,6 +99,8 @@ class ActorController extends Controller
     public function update(Request $request, Actor $actor)
     {
         // Ci consente di aggiornare i dati dell'attore
+        $actor->update($request->all());
+        return redirect()->route('actors.show', $actor->id);
     }
 
     /**
