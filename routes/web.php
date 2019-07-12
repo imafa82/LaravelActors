@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\MovieController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,4 +29,7 @@ Route::get('table/{n?}', 'MultipleTableController@index')->name('table');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('actors', 'ActorController');
+    Route::resource('movies', 'MovieController');
+    Route::get('actors/{actor}/movies/create', 'MovieController@create');
+
 });

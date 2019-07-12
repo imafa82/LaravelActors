@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Movie;
+use App\Actor;
 use Illuminate\Http\Request;
 
 class MovieController extends Controller
@@ -22,9 +23,9 @@ class MovieController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Actor $actor)
     {
-        //
+        dd($actor);
     }
 
     /**
@@ -46,7 +47,8 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //
+        //return response()->json($movie);
+        return view('movies.show', compact('movie'));
     }
 
     /**
@@ -57,7 +59,8 @@ class MovieController extends Controller
      */
     public function edit(Movie $movie)
     {
-        //
+
+        return view('movies.edit', compact('movie'));
     }
 
     /**
@@ -69,6 +72,17 @@ class MovieController extends Controller
      */
     public function update(Request $request, Movie $movie)
     {
+        //dd($request->all());
+        $this->validate($request, [
+            'title' => 'required',
+            'year' => 'required'
+        ], [
+            'title.required' => 'Il titolo del film è obbligatorio',
+            'year.required' => "L'anno è obbligatorio"
+        ]);
+        $movie->update($request->all());
+
+        return redirect()->route('movies.show', $movie->id);
         //
     }
 
@@ -80,6 +94,8 @@ class MovieController extends Controller
      */
     public function destroy(Movie $movie)
     {
-        //
+        $idActor= $movie->actor_id;
+        $movie->delete();
+        return redirect()->route('actors.show', $idActor);
     }
 }
