@@ -25,7 +25,12 @@
                         </div>
                     </div>
                     <div>
-                        <h2>Lista film di {{$actor->name}} {{$actor->surname}}</h2>
+                        <h2>
+                            Lista film di {{$actor->name}} {{$actor->surname}}
+                            <a href="{{route('movies.create', $actor->id)}}">
+                                    <i class="fa fa-plus" aria-hidden="true"></i>
+                            </a>
+                        </h2>
                         @forelse ($actor->movies as $movie)
                             <div class="row">
                                 <div class="col-sm-8 offset-sm-2">

@@ -29,7 +29,8 @@ Route::get('table/{n?}', 'MultipleTableController@index')->name('table');
 
 Route::group(['middleware' => 'auth'], function () {
     Route::resource('actors', 'ActorController');
-    Route::resource('movies', 'MovieController');
-    Route::get('actors/{actor}/movies/create', 'MovieController@create');
+    Route::resource('movies', 'MovieController')->only('show', 'edit', 'update', 'destroy');
+    Route::get('actors/{actor}/movies/create', 'MovieController@create')->name('movies.create');
+    //Route::post('actors/{actor}/movies', 'MovieController@store');
 
 });

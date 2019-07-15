@@ -25,7 +25,7 @@ class MovieController extends Controller
      */
     public function create(Actor $actor)
     {
-        dd($actor);
+        return view('movies.create', compact('actor'));
     }
 
     /**
@@ -36,7 +36,16 @@ class MovieController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title' => 'required',
+            'year' => 'required'
+        ], [
+            'title.required' => 'Il titolo del film è obbligatorio',
+            'year.required' => "L'anno è obbligatorio"
+        ]);
+        //dd($request->all());
+        $movie = Movie::create($request->all());
+        return redirect()->route('movies.show', $movie->id);
     }
 
     /**
@@ -47,8 +56,8 @@ class MovieController extends Controller
      */
     public function show(Movie $movie)
     {
-        //return response()->json($movie);
-        return view('movies.show', compact('movie'));
+        return response()->json($movie);
+        //return view('movies.show', compact('movie'));
     }
 
     /**

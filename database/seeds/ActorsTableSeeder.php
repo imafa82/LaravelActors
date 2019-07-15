@@ -15,6 +15,7 @@ class ActorsTableSeeder extends Seeder
         $this->save('Lino', 'Banfi', 1936);
         $this->save('Alberto', 'Sordi', 1920);
         $this->save('Diego', 'Abatantuono', 1955);
+        factory(Actor::class, 100)->create();
     }
 
     public function save($name, $surname, $year){

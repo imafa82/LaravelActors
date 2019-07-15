@@ -14,6 +14,7 @@ class UsersTableSeeder extends Seeder
     {
         $this->saveUser('Massimiliano', 'imafa82@gmail.com');
         $this->saveUser('Fabrizio', 'fabrizio@gmail.com');
+        factory(User::class, 100)->create();
     }
 
     public function saveUser($name, $email, $password="test"){

@@ -18,6 +18,7 @@ class CreateMoviesTable extends Migration
             $table->string('title');
             $table->integer('year');
             $table->longText('description')->nullable();
+            $table->text('photo')->nullable();
             $table->bigInteger('actor_id')->unsigned();
             $table->foreign('actor_id')->references('id')->on('actors');
             $table->timestamps();

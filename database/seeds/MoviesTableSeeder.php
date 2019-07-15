@@ -16,6 +16,7 @@ class MoviesTableSeeder extends Seeder
         $this->save(1, "L'allenatore nel pallone", 1962);
         $this->save(2, 'Un americano a Roma', 1955);
         $this->save(2, 'Il vigile', 1956);
+        factory(Movie::class, 10000)->create();
     }
 
     public function save($actor_id, $title, $year){

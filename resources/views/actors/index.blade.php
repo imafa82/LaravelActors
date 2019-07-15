@@ -12,7 +12,7 @@
                         @foreach ($actors as $actor)
                             <div class="row actor my-3 badge-primary">
                                 <div class="col-sm-3">
-
+                                    <img src="{{$actor->photo}}" class="img-thumbnail m-1" />
                                 </div>
                                 <div class="col-sm-9">
                                         <div class="row">
@@ -33,6 +33,22 @@
                                                     </button>
                                                 </form>
 
+                                            </div>
+                                        </div>
+                                        <div class="row m-3 movies">
+                                            <div class="col-sm-12">
+                                                @forelse ($actor->movies as $movie)
+                                                  <div class="row">
+                                                    <div class="col-sm-2">
+                                                        <img src="{{$movie->photo}}" title="{{$movie->title}}" class="rounded-circle m-1"/>
+                                                    </div>
+                                                    <div class="col-sm-10">
+                                                        {{$movie->title}}
+                                                    </div>
+                                                  </div>
+                                                @empty
+                                                    Non vi sono film per questo attore
+                                                @endforelse
                                             </div>
                                         </div>
                                 </div>
