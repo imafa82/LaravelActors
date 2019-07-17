@@ -14,6 +14,7 @@
       cursor: pointer;
     }
 }
+
 div.iconHome{
     height: 200px;
     a{
@@ -39,5 +40,11 @@ div.iconHome{
             flex-grow: 1;
             text-align: center;
         }
+    }
+}
+
+.imgView{
+    img{
+      max-width: 100%;
     }
 }

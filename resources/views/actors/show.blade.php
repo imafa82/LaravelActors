@@ -13,16 +13,22 @@
             </div>
 
                 <div class="card-body">
-                    <div class="row">
-                        <div class="col-sm-6 p-2">
-                            Nome: {{$actor->name}}
+                    <div class="row align-items-center p-2">
+                        <div class="col-sm-6 imgView p-2">
+                            <img src="{{$actor->path}}" alt="{{$actor->name}} {{$actor->surname}}">
                         </div>
                         <div class="col-sm-6 p-2">
-                            Cognome: {{$actor->surname}}
+                                <div class="col-sm-12 p-2">
+                                    Nome: {{$actor->name}}
+                                </div>
+                                <div class="col-sm-12 p-2">
+                                    Cognome: {{$actor->surname}}
+                                </div>
+                                <div class="col-sm-12 p-2">
+                                    Anno di nascita: {{$actor->year}}
+                                </div>
                         </div>
-                        <div class="col-sm-6 p-2">
-                            Anno di nascita: {{$actor->year}}
-                        </div>
+
                     </div>
                     <div>
                         <h2>

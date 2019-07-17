@@ -13725,3 +13725,7 @@ div.iconHome a span {
   text-align: center;
 }
 
+.imgView img {
+  max-width: 100%;
+}
+

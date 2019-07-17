@@ -16,14 +16,14 @@ class ActorController extends Controller
     public function index()
     {
         // Ci tornerà tutti gli attori
-        $name = 'Lino';
+        //$name = 'Lino';
         //dd(DB::select("select * from actors where name = ?", [$name]));
         //dd(DB::table('actors')->get());
         //dd(DB::table('actors')->select('name', 'surname')->get());
         //return response()->json(Actor::all('name', 'surname'));
         //dd(Actor::all()->load('movies'));
-        $actors = Actor::all()->load('movies');
-        return view('actors.index', ['actors' => $actors]);
+        //$actors = Actor::all()->load('movies');
+        return view('actors.index', ['actors' => Actor::paginate(5)]);
     }
 
     /**
@@ -99,7 +99,13 @@ class ActorController extends Controller
     public function update(Request $request, Actor $actor)
     {
         // Ci consente di aggiornare i dati dell'attore
-        $actor->update($request->all());
+        $data = $request->all();
+        if($request->hasFile('imageFile')){
+            $file = $request->file('imageFile');
+            $fileName = $file->store('images');
+            $data['photo'] = $fileName;
+        }
+        $actor->update($data);
         return redirect()->route('actors.show', $actor->id);
     }
 
