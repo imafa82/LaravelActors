@@ -17,9 +17,11 @@
                                                 <h4>{{$user->name}}</h4>
                                             </div>
                                             <div class="col-sm-2">
-                                                <a href="{{route('users.show', ['id' => $user->id])}}">
-                                                    <i class="fa fa-address-card" aria-hidden="true"></i>
-                                                </a>
+                                                @can('permission', 'editUser')
+                                                    <a href="{{route('users.show', ['id' => $user->id])}}">
+                                                        <i class="fa fa-address-card" aria-hidden="true"></i>
+                                                    </a>
+                                                @endcan
                                             </div>
                                         </div>
                                 </div>

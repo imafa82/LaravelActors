@@ -31,7 +31,9 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('actors', 'ActorController');
     Route::resource('movies', 'MovieController')->only('show', 'edit', 'update', 'destroy');
     Route::resource('users', 'UserController');
+    Route::resource('permissions', 'PermissionController');
     Route::get('actors/{actor}/movies/create', 'MovieController@create')->name('movies.create');
+    Route::post('users/{user}/permissions', 'UserController@savePermission');
     //Route::post('actors/{actor}/movies', 'MovieController@store');
 
 });

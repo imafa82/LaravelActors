@@ -3,10 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use App\User;
+use App\Permission;
 
 class UserController extends Controller
 {
+
+    public function savePermission(User $user, Request $request){
+        $user->permissions()->attach($request->input('permission'));
+        return redirect()->route('users.show', $user->id);
+    }
     /**
      * Display a listing of the resource.
      *
@@ -44,9 +51,25 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
-        //
+        if(Gate::denies('permission', 'editUser')){
+            abort(401, 'Non hai i permessi');
+        }
+        $permissions = [];
+        foreach(Permission::all() as $perm){
+            $control = true;
+            foreach($user->permissions as $p){
+                if($perm->id == $p->id){
+                    $control = false;
+                }
+            }
+            if($control){
+                array_push($permissions, $perm);
+            }
+        }
+
+        return view('users.show', compact('user', 'permissions'));
     }
 
     /**

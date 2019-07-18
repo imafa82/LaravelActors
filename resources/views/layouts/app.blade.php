@@ -50,6 +50,32 @@
                                     ]
                                 ])
                                 @endcomponent
+
+                                @component('components.design.dropdown', [
+                                    'category' => [
+                                        'label' => 'Utenti',
+                                        'links' => [
+                                            [
+                                                'route' => 'users.index',
+                                                'label' => 'Lista Utenti'
+                                            ]
+                                        ]
+                                    ]
+                                ])
+                                @endcomponent
+
+                                @component('components.design.dropdown', [
+                                    'category' => [
+                                        'label' => 'Permessi',
+                                        'links' => [
+                                            [
+                                                'route' => 'permissions.index',
+                                                'label' => 'Lista Permessi'
+                                            ]
+                                        ]
+                                    ]
+                                ])
+                                @endcomponent
                             @endauth
                     </ul>
 
